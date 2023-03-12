@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+   build:
+    args:
+     - RAILS_ENV=development
+    context: backend
+    target: development
+   command: bash -c "rm -f /tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+   volumes:
+     - ./backend:/teebay/backend
+   ports:
+    - "3000:3000"
+   depends_on:
+     - db
+  ui:
+   build:
+    context: frontend
+    target: development
+   ports:
+    - "3001:3000"
+   volumes:
+     - ./frontend/src:/teebay/frontend/src
+     - /teebay/frontend/node_modules
+   depends_on:
+    - web
