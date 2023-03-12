@@ -3,11 +3,28 @@ A simple containerized product renting, buying/selling application. Tech stack i
 
 ## How to run this application
 
-To run this application in your local machine, you need to follow some simple steps. Make sure you have Docker and docker compose installed in your machine.
-Clone this repository, using `git clone`
+To run this application in your local machine, you need to follow some simple steps. Make sure you have [Docker](https://docs.docker.com/engine/install/) and [docker compose](https://docs.docker.com/compose/install/) installed in your machine.
+Clone this repository, using 
+```bash 
+git clone git@github.com:sanjibpaul59/Teebay.git
+```
 
 Move inside the directory using, `cd Teebay`
 
-You need to create the databse first using this `docker compose run web rake db:create` command and then run `docker compose up -d` to run the application.
-After successful build and container creation, visit `http://localhost://3001` to see the client interface and visit `http://localhost:3000` for rails application
+First, the databse is needed to be created using the following command
+
+```bash 
+docker compose run web rake db:create
+``` 
+To run the application use the following command 
+```bash
+docker compose up -d
+```
+
+After successful build and container creation, visit 
+
+[`http://localhost:3001`](http://localhost:3000)
+to see the client interface and visit 
+ 
+ [`http://localhost:3000` ](http://localhost:3000) for rails application
 .
